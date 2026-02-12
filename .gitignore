@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+
+# Ignore folders per user request
+.md/
+.kiro/
+assets/
+
+# TypeScript build info
+*.tsbuildinfo
