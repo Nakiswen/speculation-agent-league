@@ -1,0 +1,19 @@
+# Build artifacts
+artifacts/
+cache/
+out/
+broadcast/
+
+# Dependencies
+node_modules/
+lib/
+
+# Environment
+.env
+.env.local
+
+# Generated types
+typechain-types/
+
+# OS
+.DS_Store
