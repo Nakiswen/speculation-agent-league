@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Vercel 部署时正确追踪 workspace root
+  outputFileTracingRoot: __dirname,
 };
 
 export default nextConfig;

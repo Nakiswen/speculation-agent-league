@@ -3,7 +3,7 @@
  * 从链上索引服务获取实时数据
  */
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 interface ApiAgentStats {
   address: string;
@@ -46,14 +46,13 @@ interface ApiEpoch {
 import type { Agent, TradeRecord, Round, LeaguePulse } from '@/types';
 import { calculateScore } from '@/lib/score-engine';
 
-/** Agent 地址到前端 ID 的映射 */
+/** Agent 地址到前端 ID 的映射（Monad Testnet） */
 const AGENT_ADDRESS_MAP: Record<string, { id: string; name: string; strategyTag: string; strategy: Agent['strategy']; avatarUrl: string }> = {
-  // Hardhat 默认账户 #1-#5
-  '0x70997970c51812dc3a010c7d01b50e0d17dc79c8': { id: 'momentum-bot', name: 'MomentumBot', strategyTag: 'Trend Rider', strategy: 'momentum', avatarUrl: '/avatars/momentum.svg' },
-  '0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc': { id: 'mean-revert-bot', name: 'MeanRevertBot', strategyTag: 'Reversion Seeker', strategy: 'mean-revert', avatarUrl: '/avatars/mean-revert.svg' },
-  '0x90f79bf6eb2c4f870365e785982e1f101e93b906': { id: 'random-bot', name: 'RandomBot', strategyTag: 'Chaos Dice', strategy: 'random', avatarUrl: '/avatars/random.svg' },
-  '0x15d34aaf54267db7d7c367839aaf71a00a2c6a65': { id: 'conservative-bot', name: 'ConservativeBot', strategyTag: 'Steady Hand', strategy: 'conservative', avatarUrl: '/avatars/conservative.svg' },
-  '0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc': { id: 'aggro-bot', name: 'AggroBot', strategyTag: 'Full Send', strategy: 'aggressive', avatarUrl: '/avatars/aggro.svg' },
+  '0x3317486504d4713c5c09a9fa6d0b1173b8364fed': { id: 'momentum-bot', name: 'MomentumBot', strategyTag: 'Trend Rider', strategy: 'momentum', avatarUrl: '/avatars/momentum.svg' },
+  '0xd9bd4099432c74ef715f9bb711455ffc6af9c2c1': { id: 'mean-revert-bot', name: 'MeanRevertBot', strategyTag: 'Reversion Seeker', strategy: 'mean-revert', avatarUrl: '/avatars/mean-revert.svg' },
+  '0xa2176a2df0bfcfcf94c0c38b6e1d728db0e1d693': { id: 'random-bot', name: 'RandomBot', strategyTag: 'Chaos Dice', strategy: 'random', avatarUrl: '/avatars/random.svg' },
+  '0x16c8d7e85c42242b0582de308af08119cc64250a': { id: 'conservative-bot', name: 'ConservBot', strategyTag: 'Steady Hand', strategy: 'conservative', avatarUrl: '/avatars/conservative.svg' },
+  '0x90a3a22b18109b6e250d5e5b9622266143139616': { id: 'aggro-bot', name: 'AggroBot', strategyTag: 'Full Send', strategy: 'aggressive', avatarUrl: '/avatars/aggro.svg' },
 };
 
 const TASK_TYPE_ASSETS = ['ETH', 'BTC', 'SOL'];

@@ -46,27 +46,6 @@ export default function OperatorPanel() {
         </div>
         <button className="btn-glass w-full text-[10px] py-3">Deploy Agent</button>
       </div>
-
-      {/* Data Source Panel */}
-      <div className="glass-box p-4">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[9px] text-slate-500 font-black uppercase tracking-[0.2em]">Data Source</span>
-          <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${
-            dataSource === 'live'
-              ? 'bg-emerald-400/10 text-emerald-400'
-              : 'bg-amber-400/10 text-amber-400'
-          }`}>
-            {dataSource === 'live' ? '🟢 LIVE' : '🟡 MOCK'}
-          </span>
-        </div>
-        <button
-          onClick={handleRefresh}
-          disabled={refreshing}
-          className="btn-glass w-full text-[10px] py-2 disabled:opacity-50"
-        >
-          {refreshing ? 'Syncing...' : 'Sync from Chain'}
-        </button>
-      </div>
     </aside>
   );
 }
