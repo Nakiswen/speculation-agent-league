@@ -13,6 +13,9 @@ build/
 .env
 .env.local
 .env.*.local
+envs/.env.local
+envs/.env.testnet
+envs/.env.mainnet
 
 # OS
 .DS_Store
