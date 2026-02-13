@@ -9,15 +9,17 @@ export const agentsAtom = atom<Agent[]>([]);
 /** 数据来源标记 */
 export const dataSourceAtom = atom<'mock' | 'live' | 'loading'>('loading');
 
-/** 按 Score 降序排列的派生 atom */
+/** 按 Score 降序排列的派生 atom，排序后重新赋值 rank */
 export const sortedAgentsAtom = atom((get) => {
   const agents = get(agentsAtom);
-  return [...agents].sort((a, b) => b.score - a.score);
+  return [...agents]
+    .sort((a, b) => b.score - a.score)
+    .map((agent, i) => ({ ...agent, rank: i + 1 }));
 });
 
-/** 根据 ID 获取单个 Agent 的派生 atom 工厂函数 */
+/** 根据 ID 获取单个 Agent 的派生 atom 工厂函数（从排序后的列表取，确保 rank 正确） */
 export const agentByIdAtom = (id: string) =>
-  atom((get) => get(agentsAtom).find((a) => a.id === id));
+  atom((get) => get(sortedAgentsAtom).find((a) => a.id === id));
 
 /** 刷新 Agent 数据的写入 atom — 优先从 API 获取，失败则 fallback mock */
 export const refreshAgentsAtom = atom(null, async (_get, set) => {
