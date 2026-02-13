@@ -28,5 +28,8 @@ Thumbs.db
 .kiro/
 assets/
 
+# Scripts with sensitive data
+scripts/
+
 # TypeScript build info
 *.tsbuildinfo
