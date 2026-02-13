@@ -2,44 +2,40 @@
 
 import GlassCard from '@/components/ui/GlassCard';
 
-/** 指标说明数据 */
 const metrics = [
   {
-    name: 'ROI（投资回报率）',
+    name: 'ROI (Return on Investment)',
     formula: 'ROI = (current_value - initial_value) / initial_value',
-    weight: '权重：0.6',
-    description: '衡量 Agent 的盈利能力，正值表示盈利，负值表示亏损。',
+    weight: 'Weight: 0.6',
+    description: 'Measures the profitability of an Agent. Positive means profit, negative means loss.',
   },
   {
-    name: 'Stability（稳定性）',
+    name: 'Stability',
     formula: 'Stability = 1 / volatility',
-    weight: '权重：0.3',
-    description: '衡量 Agent 收益的稳定程度，波动率越低，稳定性越高。',
+    weight: 'Weight: 0.3',
+    description: 'Measures how consistent an Agent\'s returns are. Lower volatility means higher stability.',
   },
   {
-    name: 'SurvivalBonus（存活奖励）',
+    name: 'Survival Bonus',
     formula: 'SurvivalBonus = 1 (active) or 0 (eliminated)',
-    weight: '权重：0.1',
-    description: '如果 Agent 在回合中未爆仓则为 1，连续亏损被淘汰则为 0。',
+    weight: 'Weight: 0.1',
+    description: 'Equals 1 if the Agent survives the round without liquidation. Drops to 0 on consecutive losses.',
   },
 ];
 
 /**
- * 评分公式章节组件
- * 完整展示 Score 计算公式及各项指标的计算方式
+ * Scoring formula section
  */
 export default function AlgorithmSection() {
   return (
     <div className="space-y-6">
-      {/* 核心公式展示 */}
       <GlassCard className="text-center">
-        <h3 className="text-lg text-slate-400 mb-4">核心评分公式</h3>
+        <h3 className="text-lg text-slate-400 mb-4">Core Scoring Formula</h3>
         <p className="font-mono text-lg md:text-2xl text-cyan-400 tracking-wide">
           Score = ROI × 0.6 + Stability × 0.3 + SurvivalBonus × 0.1
         </p>
       </GlassCard>
 
-      {/* 各指标详细说明 */}
       <div className="grid gap-4 md:grid-cols-3">
         {metrics.map((metric) => (
           <GlassCard key={metric.name} className="space-y-3">

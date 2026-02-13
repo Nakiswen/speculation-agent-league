@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import CountdownTimer from '@/components/arena/CountdownTimer';
+import WalletButton from '@/components/ui/WalletButton';
 
 /** 导航链接配置 */
 interface NavLink {
@@ -86,14 +87,10 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* 右侧：Live Feed + 倒计时 + 用户头像 */}
-      <div className="flex items-center gap-10">
+      {/* 右侧：倒计时 + 钱包 */}
+      <div className="flex items-center gap-6">
         <CountdownTimer />
-        <div className="w-12 h-12 rounded-xl p-[1.5px] bg-linear-to-br from-cyan-400 to-indigo-600">
-          <div className="w-full h-full rounded-[10px] bg-[#010203] flex items-center justify-center font-bold text-xs uppercase">
-            Dev
-          </div>
-        </div>
+        <WalletButton />
       </div>
     </header>
   );

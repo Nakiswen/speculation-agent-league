@@ -3,13 +3,16 @@
 import { useEffect, useRef } from 'react';
 import { useAtomValue } from 'jotai';
 import { roundAtom } from '@/store/round';
+import { isLastStandActiveAtom } from '@/store/last-stand';
 
 /**
  * 倒计时组件 — 匹配设计稿 header 右侧
  * 用 DOM ref 直接更新文本，避免 React 渲染循环
+ * Last Stand 模式下变红闪烁
  */
 export default function CountdownTimer() {
   const round = useAtomValue(roundAtom);
+  const isLastStand = useAtomValue(isLastStandActiveAtom);
   const timeRef = useRef<HTMLSpanElement>(null);
   const csRef = useRef<HTMLSpanElement>(null);
   const rafRef = useRef(0);
@@ -39,17 +42,21 @@ export default function CountdownTimer() {
   }, [round]);
 
   return (
-    <div className="text-right">
-      <p className="text-[10px] text-cyan-400 font-bold uppercase tracking-[0.3em] mb-1">
-        Live Feed
+    <div className={`text-right ${isLastStand ? 'countdown-last-stand' : ''}`}>
+      <p className={`text-[10px] font-bold uppercase tracking-[0.3em] mb-1 ${
+        isLastStand ? 'text-red-500 last-stand-glow' : 'text-cyan-400'
+      }`}>
+        {isLastStand ? '⚡ Last Stand' : 'Live Feed'}
       </p>
       <p
-        className="text-3xl font-black tracking-tighter text-white"
+        className={`text-3xl font-black tracking-tighter ${
+          isLastStand ? 'text-red-400' : 'text-white'
+        }`}
         style={{ fontFamily: "'JetBrains Mono', monospace" }}
         suppressHydrationWarning
       >
         <span ref={timeRef}>00:37:00:</span>
-        <span ref={csRef} className="text-cyan-400">00</span>
+        <span ref={csRef} className={isLastStand ? 'text-red-500' : 'text-cyan-400'}>00</span>
       </p>
     </div>
   );

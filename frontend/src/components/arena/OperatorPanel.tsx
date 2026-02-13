@@ -1,10 +1,27 @@
 'use client';
 
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useState } from 'react';
+import { dataSourceAtom, refreshAgentsAtom } from '@/store/agents';
+
 /**
  * 右侧 Operator 面板 — 匹配设计稿右栏
- * 大头像 + 用户名 + 等级徽章 + Deploy Agent 按钮
+ * 大头像 + 用户名 + 等级徽章 + Deploy Agent 按钮 + 数据源切换
  */
 export default function OperatorPanel() {
+  const dataSource = useAtomValue(dataSourceAtom);
+  const refreshAgents = useSetAtom(refreshAgentsAtom);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await refreshAgents();
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
   return (
     <aside className="flex flex-col gap-6 h-full">
       <div className="glass-box p-6">
@@ -28,6 +45,27 @@ export default function OperatorPanel() {
           </div>
         </div>
         <button className="btn-glass w-full text-[10px] py-3">Deploy Agent</button>
+      </div>
+
+      {/* Data Source Panel */}
+      <div className="glass-box p-4">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[9px] text-slate-500 font-black uppercase tracking-[0.2em]">Data Source</span>
+          <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${
+            dataSource === 'live'
+              ? 'bg-emerald-400/10 text-emerald-400'
+              : 'bg-amber-400/10 text-amber-400'
+          }`}>
+            {dataSource === 'live' ? '🟢 LIVE' : '🟡 MOCK'}
+          </span>
+        </div>
+        <button
+          onClick={handleRefresh}
+          disabled={refreshing}
+          className="btn-glass w-full text-[10px] py-2 disabled:opacity-50"
+        >
+          {refreshing ? 'Syncing...' : 'Sync from Chain'}
+        </button>
       </div>
     </aside>
   );

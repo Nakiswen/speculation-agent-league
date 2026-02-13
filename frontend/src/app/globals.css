@@ -225,3 +225,78 @@ body {
     opacity: 0;
   }
 }
+
+
+/* ── Last Stand 红色闪烁动画 ───────────────────────────── */
+@keyframes lastStandPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3), inset 0 0 20px rgba(255, 0, 0, 0.05);
+    border-color: rgba(255, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.7), inset 0 0 40px rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.8);
+  }
+}
+
+@keyframes lastStandFlash {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.6; }
+  50% { opacity: 1; }
+  75% { opacity: 0.7; }
+}
+
+@keyframes lastStandGlow {
+  0%, 100% { text-shadow: 0 0 10px rgba(255, 60, 60, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(255, 60, 60, 1), 0 0 60px rgba(255, 0, 0, 0.5); }
+}
+
+@keyframes lastStandSlide {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  56% { transform: scale(1); }
+}
+
+.last-stand-banner {
+  animation: lastStandPulse 1.5s ease-in-out infinite, lastStandSlide 0.4s ease-out;
+}
+
+.last-stand-flash {
+  animation: lastStandFlash 0.8s ease-in-out infinite;
+}
+
+.last-stand-glow {
+  animation: lastStandGlow 1.2s ease-in-out infinite;
+}
+
+.last-stand-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Leaderboard 行 — 濒危 Agent 红色高亮 */
+.row-item.endangered {
+  border-color: rgba(255, 0, 0, 0.4) !important;
+  background: rgba(255, 0, 0, 0.08) !important;
+  animation: lastStandPulse 2s ease-in-out infinite, leaderboard-row-enter 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.row-item.endangered:hover {
+  background: rgba(255, 0, 0, 0.15) !important;
+  border-color: rgba(255, 0, 0, 0.6) !important;
+}
+
+/* CountdownTimer — Last Stand 模式 */
+.countdown-last-stand {
+  animation: lastStandFlash 0.8s ease-in-out infinite;
+}
+
+.countdown-last-stand .text-cyan-400 {
+  color: #ff3c3c !important;
+}

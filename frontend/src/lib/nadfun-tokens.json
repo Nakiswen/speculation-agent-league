@@ -1,0 +1,27 @@
+{
+  "momentum-bot": {
+    "tokenAddress": "",
+    "poolAddress": "",
+    "nadFunUrl": "https://nad.fun"
+  },
+  "mean-revert-bot": {
+    "tokenAddress": "",
+    "poolAddress": "",
+    "nadFunUrl": "https://nad.fun"
+  },
+  "random-bot": {
+    "tokenAddress": "",
+    "poolAddress": "",
+    "nadFunUrl": "https://nad.fun"
+  },
+  "conservative-bot": {
+    "tokenAddress": "0xfBb3e708d27e910B0Df45C2e59aB718827677777",
+    "poolAddress": "0x4cBd7157994f33e9F0003450286bEC1D528BDfCd",
+    "nadFunUrl": "https://nad.fun/tokens/0xfBb3e708d27e910B0Df45C2e59aB718827677777"
+  },
+  "aggro-bot": {
+    "tokenAddress": "",
+    "poolAddress": "",
+    "nadFunUrl": "https://nad.fun"
+  }
+}

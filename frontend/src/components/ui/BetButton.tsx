@@ -59,7 +59,7 @@ export default function BetButton({ children, onClick, variant, disabled = false
       disabled={disabled}
       className={`
         relative overflow-hidden
-        flex-1 rounded-xl px-3 py-3 font-semibold text-sm text-center cursor-pointer
+        flex-1 rounded-xl px-3 py-3 font-semibold text-sm text-center cursor-pointer whitespace-nowrap
         transition-transform duration-200 ease-in-out
         hover:scale-[1.02] active:scale-[0.98]
         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100
