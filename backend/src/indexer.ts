@@ -47,7 +47,7 @@ function loadConfig(): IndexerConfig {
   return {
     rpcUrl,
     leagueAddress,
-    port: Number(process.env.INDEXER_PORT) || 3001,
+    port: Number(process.env.PORT) || Number(process.env.INDEXER_PORT) || 3001,
   };
 }
 
@@ -343,8 +343,8 @@ function startIndexer() {
     res.end(JSON.stringify({ error: "Not found" }));
   });
 
-  server.listen(config.port, () => {
-    log(`REST API 运行在 http://localhost:${config.port}`);
+  server.listen(config.port, "0.0.0.0", () => {
+    log(`REST API 运行在 http://0.0.0.0:${config.port}`);
   });
 }
 

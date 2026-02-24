@@ -4,8 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "tsx src/index.ts",
     "epoch-scheduler": "tsx src/epoch-scheduler.ts",
-    "indexer": "tsx src/indexer.ts"
+    "indexer": "tsx src/indexer.ts",
+    "build": "echo 'no build needed - using tsx runtime'"
   },
   "dependencies": {
     "ethers": "^6.13.0",
